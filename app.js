@@ -18,8 +18,10 @@ app.get('/', (req, res)=>{
     res.send("Welcome to root URL of Server");
 });
 
+//Get all md files
 throughDirectory("content");
 
+//Create a route for each md file
 files.forEach(function(filePath){
     let path = filePath.replace('content', '').replace('index.md','')
      app.get(path, function (req, res) {
@@ -39,7 +41,8 @@ files.forEach(function(filePath){
 app.listen(3000, function () {
     console.log('listening on port ', 3000);
 });
-       
+ 
+//function to get all the md filepaths in a folder. 
 function throughDirectory(directory) {
     fs.readdirSync(directory).forEach(File => {
         const absolute = path.join(directory, File);
